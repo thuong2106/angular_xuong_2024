@@ -1,0 +1,65 @@
+<p-toast />
+<div class="p-4 sm:ml-64">
+  <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+    <h1 class="text-center text-2xl font-bold mb-4">PRODUCT ADD</h1>
+    <form [formGroup]="addProductForm" (ngSubmit)="handleCreateProduct()">
+      <div class="space-y-4 mx-auto w-full max-w-lg"> <!-- Centering this div and setting width -->
+        <div class="mb-3">
+          <label for="title" class="form-label block text-sm font-medium text-gray-700">Title</label>
+          <input type="text" class="form-control border rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-300 w-full" id="title" formControlName="title" />
+          <div *ngIf="addProductForm.controls['title'].touched && addProductForm.controls['title'].errors?.['required']" class="text-red-600 text-sm"><small>Title is Required</small></div>
+          <div *ngIf="addProductForm.controls['title'].touched && addProductForm.controls['title'].errors?.['minlength']" class="text-red-600 text-sm"><small>Min Length is min 6 ký tự</small></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="image" class="form-label block text-sm font-medium text-gray-700">Image</label>
+          <input type="text" class="form-control border rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-300 w-full" id="image" formControlName="image" />
+          <div *ngIf="addProductForm.controls['image'].touched && addProductForm.controls['image'].errors?.['required']" class="text-red-600 text-sm"><small>Image is Required</small></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="price" class="form-label block text-sm font-medium text-gray-700">Price</label>
+          <input type="number" class="form-control border rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-300 w-full" id="price" formControlName="price" />
+          <div *ngIf="addProductForm.controls['price'].touched && addProductForm.controls['price'].errors?.['required']" class="text-red-600 text-sm"><small>Price is Required</small></div>
+          <div *ngIf="addProductForm.controls['price'].touched && addProductForm.controls['price'].errors?.['min']" class="text-red-600 text-sm"><small>Price Min 0</small></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label block text-sm font-medium text-gray-700">Description</label>
+          <textarea class="form-control border rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-300 w-full" id="description" rows="3" formControlName="description"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="category" class="form-label block text-sm font-medium text-gray-700">Category</label>
+          <select class="form-control border rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-300 " id="category" formControlName="category">
+            <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
+          </select>
+          <div *ngIf="addProductForm.controls['category'].touched && addProductForm.controls['category'].errors?.['required']" class="text-red-600 text-sm"><small>Category is Required</small></div>
+        </div>
+        <div>
+          <label class="form-label block text-sm font-medium text-gray-700">Satrt At</label>
+          <p-calendar inputId="calendar-24h" [(ngModel)]="datetime24h" [showTime]="true" [hourFormat]="'24'" class="form-control border rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-300 w-1/2" formControlName="startAt" />
+        </div>
+        <div class="mb-3">
+          <label for="time" class="form-label block text-sm font-medium text-gray-700">Select Times</label>
+          <select class="form-control border rounded-md px-3 py-2 mt-1 focus:outline-none focus:ring focus:border-blue-300 " id="time" formControlName="bidTime">
+            <option value="15">15ph</option>
+            <option value="15">30ph</option>
+            <option value="15">1h</option>
+          </select>
+          <div *ngIf="addProductForm.controls['category'].touched && addProductForm.controls['category'].errors?.['required']" class="text-red-600 text-sm"><small>Category is Required</small></div>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="isShow" formControlName="isShow" />
+          <label class="form-label text-sm font-medium text-gray-700" for="isShow">Show Product</label>
+        </div>
+
+        <button type="submit" class="btn bg-green-500 text-white px-4 py-2 rounded-md" [disabled]="addProductForm.invalid">Create Product</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+
+

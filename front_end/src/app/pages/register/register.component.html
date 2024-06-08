@@ -1,0 +1,56 @@
+<div class="flex justify-center items-center h-screen">
+  <div class="w-96 p-6 shadow-lg bg-white rounded-md">
+    <h1 class="text-3xl block text-center font-semibold"><i class="fa-solid fa-user"></i> Register</h1>
+    <hr class="mt-3">
+    <form [formGroup]="registerForm" (ngSubmit)="handleRegistration()">
+      <div class="mt-3">
+        <label for="username" class="block text-base mb-2">Username</label>
+        <input type="text" formControlName="name" class="border rounded-md w-full text-base px-2 py-1 focus:outline-none focus:right-0 focus:border-gray-600" placeholder="Enter Username...">
+        @if(registerForm.controls['name'].errors?.['required'] &&
+        registerForm.controls['name'].touched ) {
+        <small class="text-red-500 text-small">Username is Required</small>
+        }
+      </div>
+      <div class="mt-3">
+        <label for="email" class="block text-base mb-2">Email</label>
+        <input type="email" formControlName="email" class="border rounded-md w-full text-base px-2 py-1 focus:outline-none focus:right-0 focus:border-gray-600" placeholder="Enter Email...">
+        @if(registerForm.controls['email'].errors?.['required'] &&
+        registerForm.controls['email'].touched ) {
+        <small class="text-red-500 text-small">Email is Required</small>
+        }
+        @if(registerForm.controls['email'].errors?.['email'] &&
+        registerForm.controls['email'].touched ) {
+        <small class="text-red-500 text-small">Email is Invalid</small>
+        }
+      </div>
+      <div class="mt-3">
+        <label for="password" class="block text-base mb-2">Password</label>
+        <input type="password" formControlName="password" class="border rounded-md w-full text-base px-2 py-1 focus:outline-none focus:right-0 focus:border-gray-600" placeholder="Enter Password...">
+        @if(registerForm.controls['password'].errors?.['required'] &&
+        registerForm.controls['password'].touched ) {
+        <small class="text-red-500 text-small">Password is Required</small>
+        }
+        @if(registerForm.controls['password'].errors?.['minlength'] &&
+        registerForm.controls['password'].touched ) {
+        <small class="text-red-500 text-small">Passwords must be at least 6 characters</small>
+        }
+      </div>
+      <div class="mt-3">
+        <label for="password" class="block text-base mb-2">Confirm Password</label>
+        <input type="password" formControlName="passwordConfirm" class="border rounded-md w-full text-base px-2 py-1 focus:outline-none focus:right-0 focus:border-gray-600" placeholder="Enter Confirm Password...">
+        @if(registerForm.controls['passwordConfirm'].errors?.['required'] &&
+        registerForm.controls['passwordConfirm'].touched ) {
+        <small class="text-red-500 text-small">Confirm Password is Required</small>
+        }
+        @if(registerForm.controls['passwordConfirm'].errors?.['minlength'] &&
+        registerForm.controls['passwordConfirm'].touched ) {
+        <small class="text-red-500 text-small">Passwords must be at least 6 characters</small>
+        }
+        
+      </div>
+      <div class="mt-5">
+        <button type="submit" class="border-2 border-indigo-500 bg-indigo-500 text-white py-1 w-full rounded-md hover:bg-transparent hover:text-indigo-500 font-semibold">Register</button>
+      </div>
+    </form>
+  </div>
+</div>

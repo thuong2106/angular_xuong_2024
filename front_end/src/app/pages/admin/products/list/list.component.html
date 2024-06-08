@@ -1,0 +1,44 @@
+<div class="p-4 sm:ml-64 flex justify-center">
+  <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 w-full max-w-7xl">
+    <h1 class="text-center text-2xl font-bold mb-4">PRODUCT LIST</h1>
+    <div class="shadow-2xl px-6 py-6 rounded-lg">
+      <button class="mx-2 px-4 py-1 rounded-md text-white bg-green-400 m-3">
+        <a [routerLink]="['/admin/products/add']">Add +</a>
+      </button>
+      <div class="overflow-x-auto max-w-full">
+        <table class="min-w-full">
+          <thead>
+            <tr>
+              <th class="px-6 py-3 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">Title</th>
+              <th class="px-6 py-3 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">Image</th>
+              <th class="px-6 py-3 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">Price</th>
+              <th class="px-6 py-3 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">Description</th>
+              <th class="px-6 py-3 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">Category</th>
+              <th class="px-6 py-3 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pro of products" class="border-b border-gray-200">
+              <td class="px-6 py-4">{{ pro.title }}</td>
+              <td class="px-6 py-4"><img src="{{ pro.image }}" class="w-20" alt="" /></td>
+              <td class="px-6 py-4">{{ pro.price }}</td>
+              <td class="px-6 py-4">{{ pro.description }}</td>
+              <td class="px-6 py-4">{{ pro.category.name }}</td>
+              <td class="px-6 py-4">
+                <div class="flex items-center space-x-2">
+                  <button (click)="handleDelete(pro._id)" class="px-4 py-1 rounded-md text-white bg-red-500">Xóa</button>
+                  <button class="px-4 py-1 rounded-md text-white bg-yellow-500">
+                    <a [routerLink]="['/admin/products/edit', pro._id]">Edit</a>
+                  </button>
+                  <button class="px-4 py-1 rounded-md text-white bg-sky-400">
+                    <a [routerLink]="['/products', pro._id]">View</a>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
